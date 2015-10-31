@@ -38,7 +38,7 @@ Ball.prototype.start = function(number) {
 };
 
 var earthBall = new Ball(9.8, 50, 8);
-//earthBall.start(-1);
+//earthBall.start(-1); //uncomment it for constant fall and jump
 
 //add wind, add friction options
 //dropdown menu for other planets
