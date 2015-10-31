@@ -9,56 +9,72 @@ function Ball(gravity, posX, posY) {
   this.distance = 0;
   this.element = $('<div class="ball">');
   this.element.appendTo($('#container'));
-  console.log(this.element);
   this.element.offset({top: this.posY, left: this.posX});
 }
 
-Ball.prototype.stepUpwards = function() {
-  console.log('step 5');
-  if(this.posY >= upperLimit) {
-    time += 0.01;
-    this.distance = 0.5 * this.gravity * time * time;
-    this.posY -= this.distance;
-    this.element.offset({top: this.posY, left: this.posX});
-  } else {
-    clearInterval(this.interval);
-    time = 0.01;
-    console.log('step 6');
-    // this.moveDownwards(); // jumps forever
+// Ball.prototype.step = function(number) {
+//   console.log(this.posY);
+//   console.log(upperLimit);
+//   var inlimit = true;
+//   if(number === -1 && this.posY > bottomLimit) {
+//     inlimit = false;
+//   }
+//   else if(number === 1 && this.posY < upperLimit) {
+//     inlimit = false;
+//   }
+//
+//   if(inlimit) {
+//     time += 0.01;
+//     this.distance = 0.5 * this.gravity * time * time;
+//     this.posY += number * this.distance;
+//     this.element.offset({top: this.posY, left: this.posX});
+//   } else {
+//     clearInterval(this.interval);
+//     // console.log('step idk');
+//     this.interval = setInterval(this.step.bind(this, -1 * number), 1000 * time);
+//     time = 0.01;
+//   }
+// };
+
+Ball.prototype.stepOne = function(number) {
+  var inlimit = true;
+  console.log('here1');
+  console.log(number);
+  console.log(this.posY);
+  if(number === -1 && (this.posY >= bottomLimit || this.posY > upperLimit)) {
+    inlimit = false;
+    console.log('here2');
   }
-};
-
-Ball.prototype.moveUpwards = function() {
-  console.log('step 4');
-  this.interval = setInterval(this.stepUpwards.bind(this), 1000 * time);
-};
-
-Ball.prototype.stepDownwards = function() {
-  console.log('step 2');
-  if(this.posY <= bottomLimit) {
-    this.distance = 0.5 * this.gravity * time * time;
-    this.posY += this.distance;
-    this.element.offset({top: this.posY, left: this.posX});
+  else if(number === 1 && (this.posY <= upperLimit || this.posY < bottomLimit)) {
+    inlimit = false;
+    console.log('here3');
+  }
+  if(!inlimit) {
+    console.log('here4');
+    console.log(this.posY);
     time += 0.01;
+    this.distance = 0.5 * this.gravity * time * time;
+    this.posY += (number * this.distance);
+    this.element.offset({top: this.posY, left: this.posX});
+    console.log(this.posY);
+    console.log(number);
   }
   else {
     clearInterval(this.interval);
-    console.log('step 3');
-    time = 0.01;
-    this.moveUpwards();
+    console.log('here5');
+    this.start(number);
   }
 };
 
-Ball.prototype.moveDownwards = function() {
-  console.log('step 1');
-  this.interval = setInterval(this.stepDownwards.bind(this), 1000 * time);
+Ball.prototype.start = function(number) {
+  time = 0.01;
+  this.interval = setInterval(this.stepOne.bind(this, number * -1), 1000 * time);
 };
 
 var earthBall = new Ball(9.8, 50, 8);
-earthBall.moveDownwards();
+//earthBall.start(-1);
+
 
 //add wind, add friction options
 //dropdown menu for other planets
-//make falling smoother
-//touch the ground, jump back up
-//combine up down into a single func pass direction
+//balls for other planets
