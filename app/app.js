@@ -38,8 +38,16 @@ Ball.prototype.start = function(number) {
 };
 
 var earthBall = new Ball(9.8, 50, 8);
-//earthBall.start(-1); //uncomment it for constant fall and jump
+// earthBall.start(-1); //uncomment it for constant fall and jump
+$('.planetList').addClass('hidden');
+
+$('#planets').hover(
+  function() {
+  $('.planetList').removeClass('hidden');
+}, function() {
+  $('.planetList').addClass('hidden');
+});
 
 //add wind, add friction options
-//dropdown menu for other planets
+//activate dropdown menu for other planets
 //balls for other planets
