@@ -1,5 +1,5 @@
 var bottomLimit = 355;
-var upperLimit = 7;
+var upperLimit = 0;
 var earthGravity = 9.81;
 var moonGravity = 1.62;
 var marsGravity = 3.71;
@@ -17,9 +17,8 @@ function Ball(gravity, posX, posY) {
   this.gravity = gravity;
   this.posX = posX;
   this.posY = posY;
-  this.distance = 0;
   this.element = $('<div class="ball">');
-  this.element.appendTo($('#container'));
+  this.element.appendTo($('#balls'));
   this.element.offset({top: this.posY, left: this.posX});
   this.velocity = 0;
   balls.push(this);
@@ -28,13 +27,20 @@ function Ball(gravity, posX, posY) {
 Ball.prototype.updatePosition = function(time) {
   var distanceTravelled = this.velocity * time + 0.5 * this.gravity * time * time;
   this.posY += distanceTravelled;
-  this.element.offset({top: this.posY, left: this.posX});
-
   this.velocity += this.gravity * time;
-
   if(this.posY > bottomLimit || this.posY < upperLimit) {
     this.velocity *= -1;
+    // distance = this.posY - bottomLimit;
+    // this.posY = bottomLimit - distance;
+    // this.velocity +=  (this.posY / 2 / time) * -1;
   }
+  // else if(this.posY < upperLimit) {
+  //   this.velocity *= -1;
+  // }
+  // if(this.posY > bottomLimit || this.posY < upperLimit) {
+  //   this.velocity *= -1;
+  // }
+  this.element.offset({top: this.posY, left: this.posX});
 };
 
 function animate() {
@@ -45,30 +51,6 @@ function animate() {
   }, 1000/26);
 }
 
-// var planets = ['earth', 'moon', 'mars', 'uranus', 'neptune', 'jupiter', 'mercury', 'pluto', 'saturn', 'venus'];
-//
-// function createBalls() {
-//   var x = 0;
-//   var y = 10;
-//
-//   for(var i = 0; i < planets.length; i++) {
-//     var ballName = planets[i] + 'Ball';
-//     var ballGravity = planets[i] + 'Gravity';
-//     var element = $('<div id='+ ballName +'>');
-//     element.addClass('inline');
-//     balls.push(element);
-//     x += 105;
-//     var ballName = new Ball(ballGravity, x, y);
-//     var imgPath = "img/" + planets[i] + ".ico";
-//     var img = $('<img src='+ imgPath +'>');
-//     element.append(img);
-//     element.appendTo($('#planets'));
-//   }
-// }
-// console.log(balls);
-// createBalls();
-
-var x = 50;
 var y = 10;
 var earthBall = new Ball(earthGravity, 80, y);
 var moonBall = new Ball(moonGravity, 195, y);
@@ -82,6 +64,8 @@ var saturnBall = new Ball(saturnGravity, 985, y);
 var venusBall = new Ball(venusGravity, 1100, y);
 
 $('#pause').hide();
+$('#reset').hide();
+
 $('#pause').on('click', function() {
   $(this).hide();
   clearInterval(interval);
@@ -92,9 +76,15 @@ $('#play').on('click', function() {
   $(this).hide();
   animate();
   $('#pause').show();
+  $('#reset').show();
 });
 
-//add wind, add friction options
-//activate dropdown menu for other planets
-//balls for other planets
-//add a master start & stop button
+$('#reset').on('click', function() {
+  $('#pause').hide();
+  $('#play').show();
+});
+
+//fix reset button
+//fix invisible ground for pluto and jupiter
+//add some information on the load
+//make planets objects with their relative info
