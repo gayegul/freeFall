@@ -10,7 +10,7 @@ var mercuryGravity = 3.7;
 var plutoGravity = 0.66;
 var saturnGravity = 10.44;
 var venusGravity = 8.87;
-var timeIncrement = 0.5;
+var timeIncrement = 0.1;
 var balls = [];
 
 function Ball(gravity, posX, posY) {
@@ -26,9 +26,9 @@ function Ball(gravity, posX, posY) {
 
 Ball.prototype.updatePosition = function(time) {
   var distanceTravelled = this.velocity * time + 0.5 * this.gravity * time * time;
-  this.posY += distanceTravelled;
+  this.posY += distanceTravelled * 30;
   this.velocity += this.gravity * time;
-  if(this.posY > bottomLimit || this.posY < upperLimit) {
+  if(Math.round(this.posY) > bottomLimit || Math.round(this.posY) < upperLimit) {
     this.velocity *= -1;
     // distance = this.posY - bottomLimit;
     // this.posY = bottomLimit - distance;
@@ -43,12 +43,25 @@ Ball.prototype.updatePosition = function(time) {
   this.element.offset({top: this.posY, left: this.posX});
 };
 
-function animate() {
-  interval = setInterval(function() {
-    for(var i = 0; i < balls.length; i++) {
-      balls[i].updatePosition(timeIncrement);
-    }
-  }, 1000/26);
+// function animate() {
+//   interval = setInterval(function() {
+//     for(var i = 0; i < balls.length; i++) {
+//       balls[i].updatePosition(timeIncrement);
+//     }
+//   }, 1000/26);
+// }
+var previousTime;
+var paused = true;
+
+function animate(currentTime) {
+  var increment = currentTime - previousTime;
+  previousTime = currentTime;
+  for(var i = 0; i < balls.length; i++) {
+    balls[i].updatePosition(increment/1000);
+  }
+  if(!paused) {
+    requestAnimationFrame(animate);
+  }
 }
 
 var y = 10;
@@ -68,13 +81,17 @@ $('#reset').hide();
 
 $('#pause').on('click', function() {
   $(this).hide();
-  clearInterval(interval);
+  paused = true;
   $('#play').show();
 });
 
 $('#play').on('click', function() {
   $(this).hide();
-  animate();
+  paused = false;
+  requestAnimationFrame(function(time) {
+    previousTime = time;
+    animate(time);
+  });
   $('#pause').show();
   $('#reset').show();
 });
