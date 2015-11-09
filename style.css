@@ -2,7 +2,6 @@ body {
   background-image: url(http://i.space.com/images/i/000/023/497/wW4/most-distant-quasar-1920.jpg?1352488857);
   opacity: 0.4;
 }
-
 .ball {
   width: 30px;
   height: 30px;
@@ -12,15 +11,12 @@ body {
   border-style: solid;
   border-width: 1px;
 }
-
 #container {
   width: 1240px;
 }
-
 #balls {
   height: 400px;
 }
-
 #names {
   color: white;
   display: flex;
@@ -29,7 +25,6 @@ body {
   left: 50px;
   margin-right: 50px;
 }
-
 #nameEarth, #nameMoon, #nameMars {
   margin-right: 65px;
   margin-top: 20px;
@@ -42,21 +37,18 @@ body {
   left: 10px;
   position: relative;
 }
-
 #nameNeptune, #namePluto, #nameMercury,  #nameJupiter {
   margin-right: 45px;
   margin-top: 20px;
   left: -10px;
   position: relative;
 }
-
 #nameSaturn, #nameVenus {
   margin-right: 50px;
   margin-top: 20px;
   left: 5px;
   position: relative;
 }
-
 img {
   display: inline;
   width: 80px;
@@ -65,7 +57,6 @@ img {
   top: -5px;
   margin-right: 30px;
 }
-
 button {
   color: white;
   font-weight: bold;
@@ -76,23 +67,19 @@ button {
   display: block;
   margin-top: 30px;
 }
-
 #play, #pause {
   position: absolute;
   top: 0;
   left: 0;
 }
-
 #reset {
   position: absolute;
   top: 50px;
   left: 0;
 }
-
 #earth, #moon, #neptune, #mars, #uranus, #jupiter, #mercury, #pluto, #saturn, #venus {
   display: inline;
 }
-
 .socialMediaIcons {
   display: inline;
   padding: 0;
@@ -106,7 +93,6 @@ button {
 .smIcon {
   display: inline-block;
 }
-
 #footer {
   padding-top: 80px;
   color: #A6B0B0;
