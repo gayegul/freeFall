@@ -1,5 +1,5 @@
-var bottomLimit = 355;
 var upperLimit = 0;
+var bottomLimit = 355;
 var earthGravity = 9.81;
 var moonGravity = 1.62;
 var marsGravity = 3.71;
@@ -28,28 +28,12 @@ Ball.prototype.updatePosition = function(time) {
   var distanceTravelled = this.velocity * time + 0.5 * this.gravity * time * time;
   this.posY += distanceTravelled * 30;
   this.velocity += this.gravity * time;
-  if(Math.round(this.posY) > bottomLimit || Math.round(this.posY) < upperLimit) {
+  if((this.velocity > 0 && this.posY > bottomLimit) || (this.velocity < 0 && this.posY < upperLimit)) {
     this.velocity *= -1;
-    // distance = this.posY - bottomLimit;
-    // this.posY = bottomLimit - distance;
-    // this.velocity +=  (this.posY / 2 / time) * -1;
   }
-  // else if(this.posY < upperLimit) {
-  //   this.velocity *= -1;
-  // }
-  // if(this.posY > bottomLimit || this.posY < upperLimit) {
-  //   this.velocity *= -1;
-  // }
   this.element.offset({top: this.posY, left: this.posX});
 };
 
-// function animate() {
-//   interval = setInterval(function() {
-//     for(var i = 0; i < balls.length; i++) {
-//       balls[i].updatePosition(timeIncrement);
-//     }
-//   }, 1000/26);
-// }
 var previousTime;
 var paused = true;
 
@@ -101,7 +85,7 @@ $('#reset').on('click', function() {
   $('#play').show();
 });
 
+//TODO list
 //fix reset button
-//fix invisible ground for pluto and jupiter
 //add some information on the load
 //make planets objects with their relative info

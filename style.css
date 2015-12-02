@@ -13,6 +13,7 @@ body {
 }
 #container {
   width: 1240px;
+  margin: auto;
 }
 #balls {
   height: 400px;
@@ -71,11 +72,13 @@ button {
   position: absolute;
   top: 0;
   left: 0;
+  margin: 10px;
 }
 #reset {
   position: absolute;
   top: 50px;
   left: 0;
+  margin: 10px;
 }
 #earth, #moon, #neptune, #mars, #uranus, #jupiter, #mercury, #pluto, #saturn, #venus {
   display: inline;
