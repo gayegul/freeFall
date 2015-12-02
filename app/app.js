@@ -49,16 +49,31 @@ function animate(currentTime) {
 }
 
 var y = 10;
-var earthBall = new Ball(earthGravity, 80, y);
-var moonBall = new Ball(moonGravity, 195, y);
-var marsBall = new Ball(marsGravity, 305, y);
-var uranusBall = new Ball(uranusGravity, 415, y);
-var neptuneBall = new Ball(neptuneGravity, 535, y);
-var jupiterBall = new Ball(jupiterGravity, 650, y);
-var mercuryBall = new Ball(mercuryGravity, 765, y);
-var plutoBall = new Ball(plutoGravity, 875, y);
-var saturnBall = new Ball(saturnGravity, 985, y);
-var venusBall = new Ball(venusGravity, 1100, y);
+var earthBall;
+var moonBall;
+var marsBall;
+var uranusBall;
+var neptuneBall;
+var jupiterBall;
+var mercuryBall;
+var plutoBall;
+var saturnBall;
+var venusBall;
+
+function createBalls() {
+  earthBall = new Ball(earthGravity, 80, y);
+  moonBall = new Ball(moonGravity, 195, y);
+  marsBall = new Ball(marsGravity, 305, y);
+  uranusBall = new Ball(uranusGravity, 415, y);
+  neptuneBall = new Ball(neptuneGravity, 535, y);
+  jupiterBall = new Ball(jupiterGravity, 650, y);
+  mercuryBall = new Ball(mercuryGravity, 765, y);
+  plutoBall = new Ball(plutoGravity, 875, y);
+  saturnBall = new Ball(saturnGravity, 985, y);
+  venusBall = new Ball(venusGravity, 1100, y);
+}
+
+createBalls();
 
 $('#pause').hide();
 $('#reset').hide();
@@ -81,11 +96,10 @@ $('#play').on('click', function() {
 });
 
 $('#reset').on('click', function() {
-  $('#pause').hide();
-  $('#play').show();
+  $('#balls').empty();
+  createBalls();
 });
 
 //TODO list
-//fix reset button
 //add some information on the load
 //make planets objects with their relative info
