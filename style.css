@@ -108,7 +108,6 @@ button {
 .icon-octoface {
   padding: 10px;
   display: inline-block;
-  text-decoration: none;
   color: #DDDDDD;
 }
 .smIcon {
@@ -125,4 +124,10 @@ button {
 }
 #footer a, #footer a:visited {
   color: #A6B0B0;
+}
+#planetDesign {
+  list-style: none;
+}
+a {
+  text-decoration: none;
 }
