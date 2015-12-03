@@ -18,10 +18,44 @@ body {
 #balls {
   height: 400px;
 }
+#gravities {
+  color: white;
+  display: flex;
+  margin-top: 20px;
+}
+#gravityEarth,
+#gravityMoon {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-right: 60px;
+}
+#gravityMars,
+#gravityUranus {
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-right: 60px;
+}
+#gravityNeptune,
+#gravityJupiter {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-right: 50px;
+}
+#gravityMercury,
+#gravityPluto,
+#gravitySaturn {
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-right: 60px;
+}
+#gravityVenus {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-right: 60px;
+}
 #names {
   color: white;
   display: flex;
-  /*margin-right: 100px;*/
   position: relative;
   left: 50px;
   margin-right: 50px;
