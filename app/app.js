@@ -93,7 +93,6 @@ $('#play').on('click', function() {
 });
 
 $('#reset').on('click', function() {
-  console.log(balls);
   for(var i = 0; i < balls.length; i++) {
     balls[i].reset();
   }
