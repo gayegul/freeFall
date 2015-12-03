@@ -24,34 +24,18 @@ body {
   margin-top: 20px;
 }
 #gravityEarth,
-#gravityMoon {
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-right: 60px;
-}
+#gravityMoon,
 #gravityMars,
-#gravityUranus {
-  margin-left: 30px;
-  margin-top: 10px;
-  margin-right: 60px;
-}
+#gravityUranus,
 #gravityNeptune,
-#gravityJupiter {
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-right: 50px;
-}
+#gravityJupiter,
 #gravityMercury,
 #gravityPluto,
-#gravitySaturn {
-  margin-left: 30px;
-  margin-top: 10px;
-  margin-right: 60px;
-}
+#gravitySaturn,
 #gravityVenus {
-  margin-left: 20px;
+  margin-left: 15px;
   margin-top: 10px;
-  margin-right: 60px;
+  margin-right: 70px;
 }
 #names {
   color: white;
@@ -60,28 +44,19 @@ body {
   left: 50px;
   margin-right: 50px;
 }
-#nameEarth, #nameMoon, #nameMars {
-  margin-right: 65px;
+#nameEarth,
+#nameMoon,
+#nameMars,
+#nameUranus,
+#nameNeptune,
+#namePluto,
+#nameMercury,
+#nameJupiter,
+#nameSaturn,
+#nameVenus {
+  margin-right: 55px;
   margin-top: 20px;
   left: 15px;
-  position: relative;
-}
-#nameUranus {
-  margin-right: 65px;
-  margin-top: 20px;
-  left: 10px;
-  position: relative;
-}
-#nameNeptune, #namePluto, #nameMercury,  #nameJupiter {
-  margin-right: 45px;
-  margin-top: 20px;
-  left: -10px;
-  position: relative;
-}
-#nameSaturn, #nameVenus {
-  margin-right: 50px;
-  margin-top: 20px;
-  left: 5px;
   position: relative;
 }
 img {
@@ -114,7 +89,16 @@ button {
   left: 0;
   margin: 10px;
 }
-#earth, #moon, #neptune, #mars, #uranus, #jupiter, #mercury, #pluto, #saturn, #venus {
+#earth,
+#moon,
+#neptune,
+#mars,
+#uranus,
+#jupiter,
+#mercury,
+#pluto,
+#saturn,
+#venus {
   display: inline;
 }
 .socialMediaIcons {
@@ -131,7 +115,7 @@ button {
   display: inline-block;
 }
 #footer {
-  padding-top: 80px;
+  padding-top: 50px;
   color: #A6B0B0;
   font-size: 85%;
   text-align: center;
