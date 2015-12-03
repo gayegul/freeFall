@@ -1,3 +1,4 @@
+var y = 10;
 var upperLimit = 0;
 var bottomLimit = 355;
 var earthGravity = 9.81;
@@ -11,6 +12,8 @@ var plutoGravity = 0.66;
 var saturnGravity = 10.44;
 var venusGravity = 8.87;
 var timeIncrement = 0.1;
+var previousTime;
+var paused = true;
 var balls = [];
 
 function Ball(gravity, posX, posY) {
@@ -34,8 +37,14 @@ Ball.prototype.updatePosition = function(time) {
   this.element.offset({top: this.posY, left: this.posX});
 };
 
-var previousTime;
-var paused = true;
+Ball.prototype.reset = function() {
+  this.posY = y;
+  this.velocity = 0;
+  requestAnimationFrame(function(time) {
+    previousTime = time;
+    animate(time);
+  });
+};
 
 function animate(currentTime) {
   var increment = currentTime - previousTime;
@@ -48,29 +57,17 @@ function animate(currentTime) {
   }
 }
 
-var y = 10;
-var earthBall;
-var moonBall;
-var marsBall;
-var uranusBall;
-var neptuneBall;
-var jupiterBall;
-var mercuryBall;
-var plutoBall;
-var saturnBall;
-var venusBall;
-
 function createBalls() {
-  earthBall = new Ball(earthGravity, 80, y);
-  moonBall = new Ball(moonGravity, 195, y);
-  marsBall = new Ball(marsGravity, 305, y);
-  uranusBall = new Ball(uranusGravity, 415, y);
-  neptuneBall = new Ball(neptuneGravity, 535, y);
-  jupiterBall = new Ball(jupiterGravity, 650, y);
-  mercuryBall = new Ball(mercuryGravity, 765, y);
-  plutoBall = new Ball(plutoGravity, 875, y);
-  saturnBall = new Ball(saturnGravity, 985, y);
-  venusBall = new Ball(venusGravity, 1100, y);
+  new Ball(plutoGravity, 80, y);
+  new Ball(moonGravity, 195, y);
+  new Ball(mercuryGravity, 305, y);
+  new Ball(marsGravity, 415, y);
+  new Ball(uranusGravity, 535, y);
+  new Ball(venusGravity, 650, y);
+  new Ball(earthGravity, 765, y);
+  new Ball(saturnGravity, 875, y);
+  new Ball(neptuneGravity, 985, y);
+  new Ball(jupiterGravity, 1100, y);
 }
 
 createBalls();
@@ -96,8 +93,10 @@ $('#play').on('click', function() {
 });
 
 $('#reset').on('click', function() {
-  $('#balls').empty();
-  createBalls();
+  console.log(balls);
+  for(var i = 0; i < balls.length; i++) {
+    balls[i].reset();
+  }
 });
 
 //TODO list
